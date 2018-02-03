@@ -1,40 +1,57 @@
-var rand = 0;
-var word = "";
-var numWrong = 0;
-var numRight = 0;
-var phraseLength = 0;
-var numChar = 0;
+//Create an array of Words
 var character = ["Luke Skywalker", "Darth Vader", "Han Solo", "Princess Leia", "Jabba the Hutt", "Anakin Skywalker", "Lando Calrissian", "Greedo", "Chewbacca", "Aunt Beru", "Jango Fett", "Padme Amidala", "Sebulba", "Uncle Owen", "Wedge Antilles", "Count Dooku", "Poe Dameron", "General Grievous", "Qui-Gon Jinn", "Bib Fortuna", "Admiral Ackbar", "Kylo Ren", "Chirrut Imwe", "The Emperor", "Mace Windu", "Grand Moff Tarkin", "K-2SO", "C-3PO", "Darth Maul", "BB-8", "Obi-Wan Kenobi", "R2-D2", "Rey",  "Yoda", "Boba Fett"];
 
-function character () {
-    rand = Math.floor(Math.random()*character.length);
-    word = character[rand];
-    document.getElementById('singlePage').style.display = "none";
-    document.getElementById('categoryName').innerHTML = "character";
-    hangman();
+//Choose word randomly
+var randNum = Math.floor(Math.random()*character.length);
+var chosenWord = character[randNum];    
+var rightWord = [];
+var wrongWord = [];
+var underScore = [];
+
+//Dom manipulation
+ docUnderScore = document.getElementsByClassName('underScore');
+ docRightGuess = document.getElementsByClassName('rightGuess');
+ docWrongGuess = document.getElementsByClassName('wrongGuess');
+
+ console.log(chosenWord);
+//Create underscores based on length of word.
+let generateunderScore = () => {
+    for(let i = 0; i < chosenWord.length; i++) {
+        underScore.push('_');
+    document.getElementById(generateunderScore).innerHTML = underScore;    
+    }
+    console.log(underScore);
 }
 
-function hangman() {
-    var y = x-1;
-    var spaces = 0;
-    var validChar = new Array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-");
-    for(z = 0); z < word.length; z++){
-        var letter = word.substring(y,x);
-        if validChar.indexOf(letter) > -1{
-            x--;
-            y--;
-        }
-        else{
-            alert("Please remove any special characters.  Hyphens are okay by the way!");
-        }
-    }
-    x = word.length;
-    y = x-1;
-    while (x>0) {
-        numChar++;
-        var letter = word.substring(y,x);
-        if(letter === " ") {
-            document.getElementById('letter'+x).innerHTML = "&nbsp"
+
+
+//Get users guess
+document.addEventListener('keypress', (event) => {
+    let keycode = event.keyCode;
+    let keyword = String.fromCharCode(keycode);
+// if users guess is right
+    if(chosenWord.indexOf(keyword) > -1) {
+    //add to right word array
+        rightWord.push(keyword);
+    //replace underScore with right letter    
+        underScore[chosenWord.indexOf(keyword)] = keyword;
+        docUnderScore[0].innerHTML = underScore.join(' ');
+        docRightGuess[0].innerHTML = rightWord;
+    //check to see if user work matches guesses
+        if(underScore.join(' ') == chosenWord) {
+            alert('The Force is Strong With You!');
         }
     }
-}
+    else {
+        wrongWord.push(keyword);
+        docWrongGuess[0].innerHTML = wrongWord;
+    }
+});
+
+
+
+    // docUnderScore[0].innerHTML = generateunderScore().join(' ');
+//     let keyword = String.fromCharCode(event.keyCo
+//      
+// });
+

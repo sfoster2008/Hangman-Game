@@ -7,12 +7,12 @@ header {
     text-align: center;
 }
 
-.underscore {
+.underScore {
     border: 2px solid black;
     height: 150px;
     width: 80%;
     margin: 50px;
-    font-size: 20px;
+    font-size: 50px;
     text-align: center;
 }
 
@@ -21,7 +21,7 @@ header {
     height: 150px;
     width: 80%;
     margin: 50px;
-    font-size: 20px;
+    font-size: 50px;
     text-align: center;
 }
 
@@ -30,6 +30,6 @@ header {
     height: 150px;
     width: 80%;
     margin: 50px;
-    font-size: 20px;
+    font-size: 50px;
     text-align: center;
 }
